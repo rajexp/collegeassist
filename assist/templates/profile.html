@@ -25,6 +25,10 @@
     {% else %}
     {% endif %}
     <tr><td>Last Login</td><td colspan="2" id="last_login"><span>{{ user.last_login }}</span></td></tr>
+    {% if contributor %}
+    <tr><td>Points</td><td colspan="2" id="last_login"><span>{{ contributor.points }}</span></td></tr>
+    {% else %}
+    {% endif %}
 </table>
 <div id="modal" class="modal fade"><div class="modal-content"><div class="modal-header">
 	<h5 class="modal-title"></h5><button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

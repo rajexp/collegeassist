@@ -79,11 +79,12 @@ def profile(request):
         email = request.GET.get('email',request.user)
         form = AvatorForm()
         owner = User.objects.get(email=email)
+        contributor,created = Contributor.objects.get_or_create(user=owner)
         is_owner = True if owner == request.user else False
         if  owner.user_role == "student":
             student,created = Student.objects.get_or_create(user=owner)
-            return render(request,"profile.html",context={"user":request.user,"student":student,'form':form, 'is_owner':is_owner})        
-        return render(request,"profile.html",context={"user":owner,'form':form, 'is_owner':is_owner})
+            return render(request,"profile.html",context={"user":owner,"student":student,'form':form, 'is_owner':is_owner,"contributor":contributor})        
+        return render(request,"profile.html",context={"user":owner,'form':form, 'is_owner':is_owner,"contributor":contributor})
     elif request.method =='POST':
         if 'name' in request.POST.keys():
             if request.POST['name'] in ['semester','registration_no','branch']:
